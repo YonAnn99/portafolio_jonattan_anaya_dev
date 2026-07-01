@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import ScrollProgress from "@/components/ui/scroll-progress";
+import ParticleBackground from "@/components/ui/particle-background";
 import "./globals.css";
 
 const SITE_URL = "https://jonattan-anaya-dev.vercel.app";
@@ -93,6 +94,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body bg-bg text-text antialiased">
+        <ParticleBackground />
         <ScrollProgress />
         <a
           href="#top"
@@ -100,7 +102,9 @@ export default function RootLayout({
         >
           Saltar al contenido principal
         </a>
-        {children}
+        <div className="relative z-10">
+          {children}
+        </div>
         <Analytics />
       </body>
     </html>

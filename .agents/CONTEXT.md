@@ -234,7 +234,7 @@ Routes:
 
 ## Resumen Final de Archivos
 
-### Archivos Nuevos (12)
+### Archivos Nuevos (16)
 | Archivo | Propósito |
 |---|---|
 | `app/sitemap.ts` | Generación automática de sitemap.xml |
@@ -243,19 +243,137 @@ Routes:
 | `app/error.tsx` | Error boundary con retry |
 | `app/actions/contact.ts` | Server action para formulario de contacto |
 | `components/ui/contact-form.tsx` | Formulario con validación y feedback |
+| `components/ui/particle-background.tsx` | Fondo de partículas interactivo con mouse |
+| `components/ui/scroll-progress.tsx` | Barra de progreso de scroll con spring physics |
 | `.github/workflows/ci.yml` | CI pipeline (lint + typecheck + build) |
 | `.husky/pre-commit` | Pre-commit hook para lint-staged |
 | `.lintstagedrc.json` | Configuración de lint-staged |
 | `.env.local` | Variables de entorno sensibles |
 | `.env.example` | Plantilla de variables de entorno |
 | `.gitignore` | Exclusiones de git |
+| `eslint.config.mjs` | Configuración ESLint flat config |
+| `public/preview-bgg.png` | Screenshot de Black Ghost's Garage |
 
-### Archivos Modificados (5)
+### Archivos Modificados (10)
 | Archivo | Cambios |
 |---|---|
-| `app/layout.tsx` | OG/Twitter tags, skip-to-content, Analytics |
-| `lib/data.ts` | Interfaces TypeScript, env vars para datos sensibles |
-| `components/ui/section-header.tsx` | Interfaz SectionHeaderProps |
-| `components/sections/contact.tsx` | Agregado formulario de contacto |
-| `components/sections/navbar.tsx` | Focus trap, ARIA attributes |
+| `app/layout.tsx` | OG/Twitter tags, skip-to-content, Analytics, ParticleBackground, ScrollProgress |
+| `app/globals.css` | GPU utilities, scroll reveal, hover-lift, focus-visible, reduced-motion |
+| `lib/data.ts` | Interfaces TypeScript, env vars, LinkedIn field |
+| `components/ui/section-header.tsx` | Interfaz SectionHeaderProps, GPU acceleration |
+| `components/ui/query-console.tsx` | GPU acceleration |
+| `components/ui/pipeline-diagram.tsx` | GPU acceleration |
+| `components/sections/contact.tsx` | Formulario de contacto, GPU acceleration |
+| `components/sections/navbar.tsx` | Focus trap, ARIA, LinkedIn link, "Jonattan Anaya" |
+| `components/sections/hero.tsx` | Removido grid background, ParticleBackground global |
+| `components/sections/*.tsx` | GPU acceleration en todos los componentes animados |
+
+---
+
+## Skills Instaladas
+
+| Skill | Fuente | Propósito |
+|---|---|---|
+| `find-skills` | vercel-labs/skills | Buscar e instalar skills |
+| `frontend-design` | anthropics/skills | Guías de diseño UI visual |
+| `fixing-motion-performance` | ibelick/ui-skills | Optimización de animaciones GPU |
+| `scroll-experience` | sickn33/antigravity-awesome-skills | Experiencias de scroll inmersivas |
+
+---
+
+## Resumen de Cambios Visuales
+
+### 15. Particle Background (Visual)
+
+**Archivo creado:** `components/ui/particle-background.tsx`
+
+**Detalles:**
+- Canvas con 100 partículas de polvo que flotan suavemente
+- Interacción con mouse: las partículas se alejan al acercar el cursor
+- Colores de la paleta: signal (#4C8DFF), insight (#F5A623), text-muted
+- Canvas con DPR scaling para nitidez en pantallas retina
+- `position: fixed` para cubrir toda la web (no solo hero)
+- `pointer-events: none` para no interferir con interacciones
+
+**Configuración:**
+```typescript
+PARTICLE_COUNT = 100
+MOUSE_RADIUS = 150px
+MOUSE_FORCE = 0.025
+FRICTION = 0.96
+BASE_SPEED = 0.25
+```
+
+---
+
+### 16. GPU Optimization (Rendimiento)
+
+**Archivos modificados:** Todos los componentes animados
+
+**Detalles:**
+- Clase `.gpu-accelerated` con `will-change: transform` + `translateZ(0)`
+- Solo se animan propiedades compositoras: `transform` y `opacity`
+- `backface-visibility: hidden` para prevenir flickering
+- `prefers-reduced-motion` desactiva todas las optimizaciones
+
+**Componentes optimizados:**
+- `hero.tsx` — todos los motion elements
+- `query-console.tsx` — contenedor principal
+- `pipeline-diagram.tsx` — nodos del diagrama
+- `section-header.tsx` — encabezados de sección
+- `skills.tsx` — cards de habilidades
+- `experience.tsx` — timeline de experiencia
+- `projects.tsx` — cards de proyectos
+- `contact.tsx` — canales y formulario
+- `about.tsx` — párrafo de resumen
+
+---
+
+### 17. Scroll Progress (Experiencia)
+
+**Archivo creado:** `components/ui/scroll-progress.tsx`
+
+**Detalles:**
+- Barra de progreso fija en la parte superior
+- Gradiente de signal → insight que sigue el scroll
+- Spring physics para movimiento suave
+- `z-index: 60` para estar sobre el contenido pero bajo el navbar
+
+---
+
+### 18. CSS Utilities (Visual)
+
+**Archivo modificado:** `app/globals.css`
+
+**Nuevas clases:**
+```css
+.gpu-accelerated    /* will-change + translateZ(0) + backface-visibility */
+.hover-lift         /* translateY(-2px) en hover con cubic-bezier */
+.animate-reveal     /* keyframe reveal-up para scroll */
+:focus-visible      /* outline azul consistente */
+```
+
+---
+
+## Build Verificado (Final)
+
+```
+✓ Compiled successfully in 15s
+✓ TypeScript passed
+✓ Static pages generated (5/5)
+
+Routes:
+├ ○ /              (main page)
+├ ○ /_not-found    (404 personalizada)
+├ ○ /robots.txt    (generated)
+└ ○ /sitemap.xml   (generated)
+```
+
+---
+
+## Dominio
+
+- **Producción:** `https://jonattan-anaya-dev.vercel.app`
+- **Alias Vercel:** `jonattan-anaya-dev.vercel.app`
+- **GitHub:** `https://github.com/YonAnn99/portafolio_jonattan_anaya_dev`
 

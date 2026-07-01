@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { ArrowDown, Mail } from "lucide-react";
 import QueryConsole from "@/components/ui/query-console";
-import ParticleBackground from "@/components/ui/particle-background";
 import { profile } from "@/lib/data";
 
 export default function Hero() {
@@ -12,11 +11,9 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden bg-bg pt-28 pb-20"
     >
-      <ParticleBackground />
-
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/2 z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-signal/8 blur-[140px]"
+        className="pointer-events-none absolute -top-32 left-1/2 z-0 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-signal/8 blur-[140px]"
       />
       <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>

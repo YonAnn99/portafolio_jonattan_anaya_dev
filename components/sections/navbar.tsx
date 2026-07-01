@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Menu, X, Github, Mail } from "lucide-react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 import { nav, profile } from "@/lib/data";
 
 export default function Navbar() {
@@ -88,11 +88,13 @@ export default function Navbar() {
             <Github size={18} />
           </a>
           <a
-            href={`mailto:${profile.email}`}
-            aria-label="Correo"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
             className="text-text-muted transition-colors hover:text-signal-soft"
           >
-            <Mail size={18} />
+            <Linkedin size={18} />
           </a>
         </div>
 

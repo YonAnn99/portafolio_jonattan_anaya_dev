@@ -6,6 +6,7 @@ export interface Profile {
   phone: string;
   email: string;
   github: string;
+  linkedin: string;
   summary: string;
 }
 
@@ -58,12 +59,13 @@ export interface NavItem {
 
 export const profile: Profile = {
   name: "Pablo Jonattan Alonso Anaya",
-  shortName: "Jonattan Alonso",
+  shortName: "Jonattan Anaya",
   role: "Ingeniero en Informática · Data Developer · Data Analyst",
   location: "Ecatepec de Morelos, México",
   phone: process.env.NEXT_PUBLIC_PHONE ?? "(56) 35-3635-77",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "jonattan10.99@hotmail.com",
   github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/YonAnn99",
+  linkedin: "https://www.linkedin.com/in/jonattananaya/",
   summary:
     "Ingeniero en Informática especializado en el desarrollo de bases de datos, automatización de procesos (ETL) y análisis de datos de negocio. Experiencia sólida diseñando e implementando soluciones tecnológicas con Python y SQL aplicadas a la optimización de inventarios, auditoría de datos y sistemas de gestión de capital humano. Proactivo, analítico y enfocado en transformar grandes volúmenes de datos en ventajas operativas y financieras mediante el uso de lógica estructurada e inteligencia artificial.",
 };

@@ -30,7 +30,7 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group rounded-xl border border-border bg-surface p-6 transition-colors hover:border-signal-dim sm:p-8"
+                className="gpu-accelerated group rounded-xl border border-border bg-surface p-6 transition-colors hover:border-signal-dim sm:p-8"
               >
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-signal-dim bg-signal/10 text-signal-soft">

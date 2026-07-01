@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import ScrollProgress from "@/components/ui/scroll-progress";
 import "./globals.css";
 
 const SITE_URL = "https://jonattan-anaya-dev.vercel.app";
@@ -92,6 +93,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body bg-bg text-text antialiased">
+        <ScrollProgress />
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-signal focus:px-4 focus:py-2 focus:text-sm focus:text-bg focus:outline-none"

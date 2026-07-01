@@ -37,7 +37,7 @@ export default function QueryConsole() {
   }, []);
 
   return (
-    <div className="w-full rounded-xl border border-border bg-surface/80 backdrop-blur-sm shadow-[0_0_0_1px_rgba(76,141,255,0.06),0_20px_60px_-20px_rgba(76,141,255,0.25)]">
+    <div className="gpu-accelerated w-full rounded-xl border border-border bg-surface/80 backdrop-blur-sm shadow-[0_0_0_1px_rgba(76,141,255,0.06),0_20px_60px_-20px_rgba(76,141,255,0.25)]">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-[#4a5364]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#4a5364]" />

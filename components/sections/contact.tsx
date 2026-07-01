@@ -33,7 +33,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: idx * 0.08 }}
-              className="group flex items-center justify-between rounded-xl border border-border bg-surface p-5 transition-colors hover:border-signal-dim"
+              className="gpu-accelerated group flex items-center justify-between rounded-xl border border-border bg-surface p-5 transition-colors hover:border-signal-dim"
             >
               <span className="flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-signal/10 text-signal-soft">
@@ -57,7 +57,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8"
+          className="gpu-accelerated mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8"
         >
           <p className="eyebrow mb-2">
             <span className="text-text-faint">INSERT INTO</span>{" "}

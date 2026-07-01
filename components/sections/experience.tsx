@@ -18,7 +18,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="relative"
+              className="gpu-accelerated relative"
             >
               <span className="absolute -left-[41px] top-1.5 h-3 w-3 rounded-full border-2 border-bg bg-signal sm:-left-[49px]" />
 

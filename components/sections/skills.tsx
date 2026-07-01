@@ -23,7 +23,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: idx * 0.06 }}
-              className="rounded-xl border border-border bg-surface p-5"
+              className="gpu-accelerated rounded-xl border border-border bg-surface p-5"
             >
               <p className="mb-3 font-mono text-[11px] text-text-faint">
                 <span className="text-insight">table</span> {group.table}

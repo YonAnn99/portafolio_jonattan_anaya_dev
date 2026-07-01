@@ -45,7 +45,7 @@ export default function PipelineDiagram() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: idx * 0.12 }}
-              className="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-signal-dim bg-surface font-mono text-xs text-signal-soft sm:h-14 sm:w-14"
+              className="gpu-accelerated z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-signal-dim bg-surface font-mono text-xs text-signal-soft sm:h-14 sm:w-14"
             >
               0{idx + 1}
             </motion.div>

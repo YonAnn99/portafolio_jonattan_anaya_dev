@@ -13,7 +13,7 @@ export default function SectionHeader({ table, title, description }: SectionHead
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5 }}
-      className="mb-10 max-w-2xl sm:mb-14"
+      className="gpu-accelerated mb-10 max-w-2xl sm:mb-14"
     >
       <p className="eyebrow mb-3">
         <span className="text-text-faint">SELECT * FROM</span>{" "}

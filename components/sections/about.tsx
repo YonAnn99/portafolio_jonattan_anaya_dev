@@ -16,7 +16,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="text-base leading-relaxed text-text-muted sm:text-lg"
+            className="gpu-accelerated text-base leading-relaxed text-text-muted sm:text-lg"
           >
             {profile.summary}
           </motion.p>

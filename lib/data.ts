@@ -30,6 +30,7 @@ export interface Project {
   org: string;
   description: string;
   tags: string[];
+  url?: string;
 }
 
 export interface Education {
@@ -132,20 +133,22 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
-    id: "inventario-acrylitec",
-    title: "Sistema de inventarios y cotizaciones",
-    org: "ACRYLITEC",
+    id: "black-ghosts-garage",
+    title: "Black Ghost's Garage",
+    org: "Sitio web para taller automotriz",
     description:
-      "Plataforma centralizada construida con Django para gestionar inventario y cotizaciones en tiempo real, con reglas de validación que redujeron los errores de captura y una arquitectura pensada para escalar junto con la operación.",
-    tags: ["Python", "Django", "SQL", "Validación de datos"],
+      "Sitio web corporativo para taller de mecánica y estética automotriz. Incluye catálogo de servicios, portafolio de trabajos realizados, sistema de contacto con agendamiento de citas y reseñas de clientes. Diseño responsive con tema oscuro, animaciones scroll-triggered y optimización SEO.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    url: "https://black-ghost-garage.vercel.app/",
   },
   {
-    id: "etl-rh",
-    title: "Automatización ETL para gestión de personal",
-    org: "Premium Brand Restaurant",
+    id: "acrylitec",
+    title: "Sistema de Cotizaciones Acrylitec",
+    org: "ACRYLITEC — Residencias Profesionales",
     description:
-      "Scripts en Python que automatizan la conciliación de reportes masivos de RH y depuran registros biométricos de asistencia a nivel nacional, apoyados en Stored Procedures y vistas de SQL Server para un cálculo de nómina confiable.",
-    tags: ["SQL Server", "Python", "ETL", "Stored Procedures"],
+      "Sistema web desarrollado con Django para la gestión centralizada de inventarios y cotizaciones de una empresa de acrílicos. Incluye CRUD de productos, generación de cotizaciones PDF, control de existencias y panel de administración. Más de 400 horas de desarrollo en contexto real de negocio.",
+    tags: ["Python", "Django", "SQLite", "HTML/CSS"],
+    url: "https://github.com/YonAnn99/Acrylitec",
   },
 ];
 

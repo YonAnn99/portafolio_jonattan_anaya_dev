@@ -6,7 +6,7 @@ import SectionHeader from "@/components/ui/section-header";
 import { projects } from "@/lib/data";
 
 const PREVIEW_IMAGES: Record<string, string> = {
-  "black-ghosts-garage": "/black-ghosts-garage-preview.gif",
+  "black-ghosts-garage": "/black-ghosts-garage-preview.png",
 };
 
 export default function Projects() {

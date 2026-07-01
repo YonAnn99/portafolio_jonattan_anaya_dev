@@ -3,7 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const SITE_URL = "https://portafolio-jonattan-anaya.vercel.app";
+const SITE_URL = "https://jonattan-anaya-dev.vercel.app";
 
 const display = Space_Grotesk({
   subsets: ["latin"],

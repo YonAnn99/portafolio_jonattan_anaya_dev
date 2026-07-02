@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 
 const PARTICLE_COUNT = 80;
-const MOUSE_RADIUS = 180;
-const MOUSE_FORCE = 0.03;
-const FRICTION = 0.97;
+const MOUSE_RADIUS = 200;
+const MOUSE_FORCE = 0.06;
+const FRICTION = 0.96;
 const DRIFT_SPEED = 0.15;
 const FLOAT_AMPLITUDE = 0.3;
 

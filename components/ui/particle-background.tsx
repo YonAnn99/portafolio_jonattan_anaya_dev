@@ -2,20 +2,27 @@
 
 import { useEffect, useRef } from "react";
 
-const PARTICLE_COUNT = 100;
-const MOUSE_RADIUS = 150;
-const MOUSE_FORCE = 0.025;
-const FRICTION = 0.96;
-const BASE_SPEED = 0.25;
+const PARTICLE_COUNT = 80;
+const MOUSE_RADIUS = 180;
+const MOUSE_FORCE = 0.03;
+const FRICTION = 0.97;
+const DRIFT_SPEED = 0.15;
+const FLOAT_AMPLITUDE = 0.3;
 
 interface Particle {
   x: number;
   y: number;
   vx: number;
   vy: number;
+  baseX: number;
+  baseY: number;
   size: number;
   opacity: number;
   color: string;
+  driftAngle: number;
+  driftSpeed: number;
+  floatPhase: number;
+  floatSpeed: number;
 }
 
 const COLORS = [
@@ -23,7 +30,6 @@ const COLORS = [
   "rgba(127, 172, 255, ",
   "rgba(245, 166, 35, ",
   "rgba(139, 148, 166, ",
-  "rgba(91, 100, 114, ",
 ];
 
 export default function ParticleBackground() {
@@ -31,6 +37,7 @@ export default function ParticleBackground() {
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number>(0);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,36 +46,43 @@ export default function ParticleBackground() {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const getPageHeight = () => Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight
-    );
+    const dpr = window.devicePixelRatio || 1;
+    let pageHeight = window.innerHeight;
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const pageHeight = getPageHeight();
+      pageHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
       canvas.width = window.innerWidth * dpr;
       canvas.height = pageHeight * dpr;
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${pageHeight}px`;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resize();
     window.addEventListener("resize", resize);
 
     const createParticles = () => {
-      const pageHeight = getPageHeight();
       const particles: Particle[] = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * pageHeight;
         particles.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * pageHeight,
-          vx: (Math.random() - 0.5) * BASE_SPEED,
-          vy: (Math.random() - 0.5) * BASE_SPEED,
-          size: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.4 + 0.08,
+          x,
+          y,
+          baseX: x,
+          baseY: y,
+          vx: (Math.random() - 0.5) * DRIFT_SPEED,
+          vy: (Math.random() - 0.5) * DRIFT_SPEED,
+          size: Math.random() * 2.5 + 1,
+          opacity: Math.random() * 0.5 + 0.3,
           color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          driftAngle: Math.random() * Math.PI * 2,
+          driftSpeed: (Math.random() * 0.5 + 0.3) * 0.01,
+          floatPhase: Math.random() * Math.PI * 2,
+          floatSpeed: (Math.random() * 0.5 + 0.5) * 0.02,
         });
       }
       return particles;
@@ -90,47 +104,76 @@ export default function ParticleBackground() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
     const animate = () => {
-      const pageHeight = getPageHeight();
+      if (!isVisibleRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, window.innerWidth, pageHeight);
 
+      const now = performance.now();
+
       for (const p of particlesRef.current) {
+        p.driftAngle += p.driftSpeed;
+        p.floatPhase += p.floatSpeed;
+
+        const driftX = Math.cos(p.driftAngle) * FLOAT_AMPLITUDE;
+        const driftY = Math.sin(p.driftAngle) * FLOAT_AMPLITUDE * 0.6;
+        const floatY = Math.sin(p.floatPhase) * 0.4;
+
         const dx = p.x - mouseRef.current.x;
         const dy = p.y - mouseRef.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
+        const radiusSq = MOUSE_RADIUS * MOUSE_RADIUS;
 
-        if (dist < MOUSE_RADIUS && dist > 0) {
+        if (distSq < radiusSq && distSq > 0) {
+          const dist = Math.sqrt(distSq);
           const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
           p.vx += (dx / dist) * force * MOUSE_FORCE;
           p.vy += (dy / dist) * force * MOUSE_FORCE;
         }
 
+        p.vx += driftX * 0.01;
+        p.vy += (driftY + floatY) * 0.01;
         p.vx *= FRICTION;
         p.vy *= FRICTION;
 
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.x < 0) p.x = window.innerWidth;
-        if (p.x > window.innerWidth) p.x = 0;
-        if (p.y < 0) p.y = pageHeight;
-        if (p.y > pageHeight) p.y = 0;
+        if (p.x < -20) p.x = window.innerWidth + 20;
+        if (p.x > window.innerWidth + 20) p.x = -20;
+        if (p.y < -20) p.y = pageHeight + 20;
+        if (p.y > pageHeight + 20) p.y = -20;
+
+        const pulse = Math.sin(now * 0.001 + p.floatPhase) * 0.1 + 0.9;
+        const currentOpacity = p.opacity * pulse;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}${p.opacity})`;
+        ctx.fillStyle = `${p.color}${currentOpacity})`;
         ctx.fill();
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      observer.disconnect();
       cancelAnimationFrame(animationRef.current);
     };
   }, []);

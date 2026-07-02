@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden bg-bg pt-28 pb-20"
+      className="relative flex min-h-screen items-center overflow-hidden bg-bg/90 pt-28 pb-20"
     >
       <div
         aria-hidden

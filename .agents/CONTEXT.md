@@ -373,7 +373,7 @@ Routes:
 
 ## Dominio
 
-- **Producción:** `https://portafolio-jonattan-anaya-dev.vercel.app`
-- **Alias Vercel:** `portafolio-jonattan-anaya-dev.vercel.app`
+- **Producción:** `https://jonattan-anaya-dev.vercel.app`
+- **Alias Vercel:** `jonattan-anaya-dev.vercel.app`
 - **GitHub:** `https://github.com/YonAnn99/portafolio_jonattan_anaya_dev`
 

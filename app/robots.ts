@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://portafolio-jonattan-anaya-dev.vercel.app/sitemap.xml",
+    sitemap: "https://jonattan-anaya-dev.vercel.app/sitemap.xml",
   };
 }

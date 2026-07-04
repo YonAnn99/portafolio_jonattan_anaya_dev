@@ -5,7 +5,7 @@ import ScrollProgress from "@/components/ui/scroll-progress";
 import ParticleBackground from "@/components/ui/particle-background";
 import "./globals.css";
 
-const SITE_URL = "https://portafolio-jonattan-anaya-dev.vercel.app";
+const SITE_URL = "https://jonattan-anaya-dev.vercel.app";
 
 const display = Space_Grotesk({
   subsets: ["latin"],

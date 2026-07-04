@@ -150,7 +150,7 @@ export const projects: Project[] = [
     description:
       "Sistema web desarrollado con Django para la gestión centralizada de inventarios y cotizaciones de una empresa de acrílicos. Incluye CRUD de productos, generación de cotizaciones PDF, control de existencias y panel de administración. Más de 400 horas de desarrollo en contexto real de negocio.",
     tags: ["Python", "Django", "SQLite", "HTML/CSS"],
-    url: "https://github.com/YonAnn99/Acrylitec",
+    url: "https://acrylitec.up.railway.app/",
   },
 ];
 

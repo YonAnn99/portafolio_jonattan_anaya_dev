@@ -7,6 +7,7 @@ import { projects } from "@/lib/data";
 
 const PREVIEW_IMAGES: Record<string, string> = {
   "black-ghosts-garage": "/black-ghosts-garage-preview.png",
+  "acrylitec": "/preview-acrylitec.png",
 };
 
 export default function Projects() {
